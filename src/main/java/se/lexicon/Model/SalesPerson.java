@@ -19,15 +19,6 @@ public class SalesPerson extends Employee {
 
     }
 
-    @Override
-    public void calculateSalary() {
-        double totalSalary;
-        totalSalary = Salary.BASESALARY.getSalary() + ((500* clients.length)+(1000* aquiredClients.length));
-        super.setSalary(totalSalary);
-
-
-    }
-
     //Setters
 
     //Getters
@@ -42,6 +33,15 @@ public class SalesPerson extends Employee {
 
 
     //Methods
+
+    @Override
+    public void calculateSalary() {
+        double totalSalary;
+        totalSalary = Salary.BASESALARY.getSalary() + ((500 * clients.length) + (1000 * aquiredClients.length));
+        super.setSalary(totalSalary);
+
+
+    }
 
     // Method to add a maintained client
     public void addClient(String clientName) {
@@ -63,7 +63,6 @@ public class SalesPerson extends Employee {
     }
 
 
-
     // Method to add a newly acquired client
     public void addAcquiredClient(String clientName) {
         if (clientName == null || clientName.trim().isEmpty()) {
@@ -77,7 +76,6 @@ public class SalesPerson extends Employee {
         }
 
 
-
         String[] newClients = Arrays.copyOf(aquiredClients, aquiredClients.length + 1);
         newClients[newClients.length - 1] = clientName;
         aquiredClients = newClients;
@@ -85,17 +83,19 @@ public class SalesPerson extends Employee {
         calculateSalary();
     }
 
+    //todo: Add method to remove clients.
 
+    //todo: Add method to remove aquiredClients
 
 
     // Override the toString() method to include information about clients
     @Override
     public String toString() {
-        return "ID: " + getId() + "\n"+
-                "Name: " + getName() + "\n"+
-                "DateHired: " + getDateHired() + "\n"+
-                "Clients: " + clients.length +"\n"+
-                "Acquired Clients: " + aquiredClients.length +"\n"+
+        return "ID: " + getId() + "\n" +
+                "Name: " + getName() + "\n" +
+                "DateHired: " + getDateHired() + "\n" +
+                "Clients: " + clients.length + "\n" +
+                "Acquired Clients: " + aquiredClients.length + "\n" +
                 "Salary: " + getSalary();
     }
 }
