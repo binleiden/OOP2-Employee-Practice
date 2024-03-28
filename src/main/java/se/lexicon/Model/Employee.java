@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public abstract class Employee {
     //Fields
+    private int sequencer = 0;
     private int id;
     private String name;
     private double salary;
@@ -15,9 +16,13 @@ public abstract class Employee {
         setName(name);
         setDateHired(dateHired);
         this.salary = Salary.BASESALARY.getSalary();
+        this.id = nextId();
     }
     //Setters
 
+    public int nextId() {
+        return ++sequencer;
+    }
     public void setSalary(double salary) {
         this.salary = salary;
     }

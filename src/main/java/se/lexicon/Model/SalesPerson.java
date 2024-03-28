@@ -83,10 +83,40 @@ public class SalesPerson extends Employee {
         calculateSalary();
     }
 
-    //todo: Add method to remove clients.
+    public void removeClients(String clientName) {
+        //Todo: validation
+        if (clientName == null || clientName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Client name cannot be null or empty");
+        }
 
-    //todo: Add method to remove aquiredClients
+        //Remove from string
+        String[] removeClient = new String[clients.length - 1];
+        int index = 0;
+        for (String name : clients) {
+            if (!name.equalsIgnoreCase(clientName)) {
+                removeClient[index++] = name;
+            }
+        }
+        clients=removeClient;
+        calculateSalary();
+    }
 
+    public void removeAquiredClients(String clientName) {
+        if (clientName == null || clientName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Client name cannot be null or empty");
+        }
+
+        //Remove from string
+        String[] removeClient = new String[aquiredClients.length - 1];
+        int index = 0;
+        for (String name : aquiredClients) {
+            if (!name.equalsIgnoreCase(clientName)) {
+                removeClient[index++] = name;
+            }
+        }
+        aquiredClients=removeClient;
+        calculateSalary();
+    }
 
     // Override the toString() method to include information about clients
     @Override
