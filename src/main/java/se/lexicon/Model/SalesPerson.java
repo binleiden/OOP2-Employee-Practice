@@ -7,7 +7,7 @@ public class SalesPerson extends Employee {
     //Fields
     private String[] clients;//500
 
-    private String[] aquiredClients;//1000
+    private String[] acquiredClients;//1000
 
 
     //Constructors
@@ -15,7 +15,7 @@ public class SalesPerson extends Employee {
     public SalesPerson(String name, LocalDate dateHired) {
         super(name, dateHired);
         clients = new String[0];
-        aquiredClients = new String[0];
+        acquiredClients = new String[0];
 
     }
 
@@ -27,8 +27,8 @@ public class SalesPerson extends Employee {
         return clients;
     }
 
-    public String[] getAquiredClients() {
-        return aquiredClients;
+    public String[] getAcquiredClients() {
+        return acquiredClients;
     }
 
 
@@ -37,7 +37,7 @@ public class SalesPerson extends Employee {
     @Override
     public void calculateSalary() {
         double totalSalary;
-        totalSalary = Salary.BASESALARY.getSalary() + ((500 * clients.length) + (1000 * aquiredClients.length));
+        totalSalary = Salary.BASESALARY.getSalary() + ((500 * clients.length) + (1000 * acquiredClients.length));
         super.setSalary(totalSalary);
 
 
@@ -69,20 +69,21 @@ public class SalesPerson extends Employee {
             throw new IllegalArgumentException("clientName cannot be null or empty");
         }
 
-        for (String existingClient : aquiredClients) {
+        for (String existingClient : acquiredClients) {
             if (existingClient.equals(clientName)) {
                 throw new IllegalArgumentException("Client '" + clientName + "' already exists");
             }
         }
 
 
-        String[] newClients = Arrays.copyOf(aquiredClients, aquiredClients.length + 1);
+        String[] newClients = Arrays.copyOf(acquiredClients, acquiredClients.length + 1);
         newClients[newClients.length - 1] = clientName;
-        aquiredClients = newClients;
+        acquiredClients = newClients;
 
         calculateSalary();
     }
 
+    // Method to remove client
     public void removeClients(String clientName) {
         //Todo: validation
         if (clientName == null || clientName.trim().isEmpty()) {
@@ -101,20 +102,21 @@ public class SalesPerson extends Employee {
         calculateSalary();
     }
 
-    public void removeAquiredClients(String clientName) {
+    // Method to remove AcquiredClients
+    public void removeAcquiredClients(String clientName) {
         if (clientName == null || clientName.trim().isEmpty()) {
             throw new IllegalArgumentException("Client name cannot be null or empty");
         }
 
         //Remove from string
-        String[] removeClient = new String[aquiredClients.length - 1];
+        String[] removeClient = new String[acquiredClients.length - 1];
         int index = 0;
-        for (String name : aquiredClients) {
+        for (String name : acquiredClients) {
             if (!name.equalsIgnoreCase(clientName)) {
                 removeClient[index++] = name;
             }
         }
-        aquiredClients=removeClient;
+        acquiredClients=removeClient;
         calculateSalary();
     }
 
@@ -125,7 +127,7 @@ public class SalesPerson extends Employee {
                 "Name: " + getName() + "\n" +
                 "DateHired: " + getDateHired() + "\n" +
                 "Clients: " + clients.length + "\n" +
-                "Acquired Clients: " + aquiredClients.length + "\n" +
+                "Acquired Clients: " + acquiredClients.length + "\n" +
                 "Salary: " + getSalary();
     }
 }
